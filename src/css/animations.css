@@ -1,0 +1,114 @@
+/* mobile menu animation*/
+@keyframes slide {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/*success subscription animation*/
+@keyframes stretch {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(100%) scale(0.2);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(100%) scale(1);
+  }
+}
+
+/*loader*/
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 10px solid var(--scheme1-foreground);
+  border-radius: 50%;
+  position: relative;
+  transform: rotate(45deg);
+  box-sizing: border-box;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  inset: -10px;
+  border-radius: 50%;
+  border: 10px solid var(--scheme2-background);
+  animation: prixClipFix 2s infinite linear;
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+  }
+
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+  }
+
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+  }
+
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%)
+  }
+
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
+  }
+}
+
+/* button animation*/
+.animated-button {
+  transition: all 0.3s ease;
+}
+
+.animated-button.dark:hover,
+.animated-button.dark:focus {
+  transform: translateY(2px);
+  background-color: var(--scheme1-foreground);
+}
+
+.animated-button.ligth:hover,
+.animated-button.ligth:focus {
+  transform: translateY(2px);
+  background-color: var(--scheme2-background);
+}
+
+.animated-button.dark:active {
+  transform: translateY(2px);
+  background-color: var(--scheme1-foreground);
+  box-shadow: var(--button-shadow);
+}
+
+.animated-button.ligth:active {
+  transform: translateY(2px);
+  background-color: var(--scheme2-background);
+  box-shadow: var(--button-shadow);
+}
+
+.animated-nav-button {
+  border: 1px solid var(--scheme2-background);
+  background-color: var(--scheme1-foreground);
+  transition: all 0.3s ease;
+}
+
+.animated-nav-button:hover,
+.animated-nav-button:focus {
+  border: 1px solid rgba(2, 6, 10, 0.6);
+}
+
+.animated-nav-button:active {
+  border: 1px solid rgba(2, 6, 10, 0.6);
+  box-shadow: inset 0 4px 6px -2px rgba(0, 0, 0, 0.03), inset 0 12px 16px -4px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
