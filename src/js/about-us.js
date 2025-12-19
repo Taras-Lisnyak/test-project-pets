@@ -47,10 +47,8 @@ function initAboutUsSwiper() {
     loop: false,
     wrapperClass: 'about-us-swiper-wrapper',
     slideClass: 'about-us-swiper-slide',
-    navigation: {
-      nextEl: nextBtnEl,
-      prevEl: prevBtnEl,
-    },
+    // Do not let Swiper attach navigation handlers automatically —
+    // we'll wire our own handlers to avoid duplicate/stacked listeners
     pagination: {
       el: paginationEl,
       clickable: true,
@@ -73,6 +71,34 @@ function initAboutUsSwiper() {
         updateNavigationState(swiper);
       },
     },
+  });
+
+  // Attach single custom handlers and keep references to remove later
+  const addNavHandler = (btnEl, handlerName, fn) => {
+    if (!btnEl) return;
+    // remove previous handler if exists
+    const prev = btnEl[handlerName];
+    if (prev) {
+      try {
+        btnEl.removeEventListener('click', prev);
+      } catch (e) {
+        // noop
+      }
+    }
+    btnEl[handlerName] = fn;
+    btnEl.addEventListener('click', fn);
+  };
+
+  addNavHandler(nextBtnEl, '_aboutUsNext', (e) => {
+    e.preventDefault();
+    swiper.slideNext();
+    updateNavigationState(swiper);
+  });
+
+  addNavHandler(prevBtnEl, '_aboutUsPrev', (e) => {
+    e.preventDefault();
+    swiper.slidePrev();
+    updateNavigationState(swiper);
   });
 
   updateNavigationState(swiper);
