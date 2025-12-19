@@ -80,6 +80,16 @@ function initAboutUsSwiper() {
 }
 
 function runInit() {
+  // Destroy previous instance if present to avoid duplicate event handlers
+  if (aboutUsSwiper) {
+    try {
+      aboutUsSwiper.destroy(true, true);
+    } catch (e) {
+      // noop
+    }
+    aboutUsSwiper = null;
+  }
+
   aboutUsSwiper = initAboutUsSwiper();
 }
 
